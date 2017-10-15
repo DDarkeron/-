@@ -4,9 +4,12 @@
 #include <string.h>
 
 int main(int argc, char *argv[]){
-char a;
+
+ char a;
 float b;
+
  b=atof(argv[2]);
+ 
  if(argc==1){
     printf("Enter number and first letter of temperature");
  }
