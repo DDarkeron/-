@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+float b;
 int main(int argc, char *argv[]){
 
-float b;
+
 
  if(argc==1){
     printf("Enter number and first letter of temperature");
