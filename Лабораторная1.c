@@ -26,16 +26,17 @@ else
         {
                 b=atof(argv[1]);
                 if (b>-273)
-                printf("F=%.2f""\nK=%.2f\n",(b*1.8+32),b+273.15);}
+                printf("F=%.2f""\nK=%.2f\n",(b*1.8+32),b+273.15);
                 else
-                printf("\ntemperature doesnt exist\n");;
+                printf("temperature doesnt exist\n");
+                }
         if (strcmp(argv[2], "F")==0 || strcmp(argv[2], "f")==0)/*types results, if Fahrenheit was mentioned*/
         {
                 b=atof(argv[1]);
                 if (b>-454)
                 printf("C=%.2f""\nK=%.2f\n",(b-32)/1.8,((b-32)/1.8)+273.15);
                 else
-                printf("\ntemperature doesnt exist\n");
+                printf("temperature doesnt exist\n");
         }
 
         if (strcmp(argv[2], "K")==0 || strcmp(argv[2], "k")==0)/*types results, if Kelvin was mentioned*/
@@ -44,10 +45,11 @@ else
             if(b>0)
             printf("C=%.2f\n""F=%.2f\n",(b-273.15),((b-273.15)*1.8)+32);
             else
-            printf("\ntemperature doesnt exist\n");
+            printf("temperature doesnt exist\n");
         }
 }
 
 
 return 0;
 }
+
