@@ -1,69 +1,198 @@
 #include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#include <ctype.h>
+#include <math.h>
+#include <conio.h>
+#include <locale.h>
 
-int main(int argc, char *argv[]){
+void hoarasort(double* mas1, int first, int last)
+{int ii, jj, x, temp;
 
-float b;
- if(argc==1)
-    {
-    printf("\nEnter number and first letter of temperature/n");
- }
- else
- if (argc==2)/*types results for everything, if there wasn't mentioned any temperature*/
-    {
-    b=atof(argv[1]);
-if (b>0) {
-    printf("\nC=%.2f""\nF=%.2f""\nK=%.2f\n",b,((b*1.8)+32),(b+273.15));
-    printf("\nF=%.2f""\nC=%.2f""\nK=%.2f\n",b,((b-32)/1.8),(((b-32)/1.8)+273.15));
-    printf("\nK=%.2f""\nC=%.2f""\nF=%.2f\n",b,(b-273.15),((b-273.15)*1.8)+32);
-}
-else
-if ((b<0)&&(-273.15<b)) {
-    printf("\nC=%.2f""\nF=%.2f""\nK=temperature doesnt exist\n",b,((b*1.8)+32));
-    printf("\nF=%.2f""\nC=%.2f""\nK=temperature doesnt exist\n",b,((b-32)/1.8));
-}
-else
-if ((b<-273.15)&&(-454<b)) {
-    printf("\nC=temperature doesnt exist""\nF=%.2f""\nK=temperature doesnt exist\n",b);
-}
-else
-if (b<-454) {
-printf("temperature doesnt exist\n");
-}
- }
-else
+if(first<last)
 {
-
-        if (strcmp(argv[2], "C")==0 || strcmp(argv[2], "c")==0)/*types results, if Celsius was mentioned*/
-        {
-                b=atof(argv[1]);
-                if (b>-273.15)
-                printf("F=%.2f""\nK=%.2f\n",(b*1.8+32),b+273.15);
-                else
-                printf("temperature doesnt exist\n");
-                }
-        if (strcmp(argv[2], "F")==0 || strcmp(argv[2], "f")==0)/*types results, if Fahrenheit was mentioned*/
-        {
-                b=atof(argv[1]);
-                if (b>-454)
-                printf("C=%.2f""\nK=%.2f\n",(b-32)/1.8,((b-32)/1.8)+273.15);
-                else
-                printf("temperature doesnt exist\n");
-        }
-
-        if (strcmp(argv[2], "K")==0 || strcmp(argv[2], "k")==0)/*types results, if Kelvin was mentioned*/
-        {
-            b=atof(argv[1]);
-            if(b>0)
-            printf("C=%.2f\n""F=%.2f\n",(b-273.15),((b-273.15)*1.8)+32);
-            else
-            printf("temperature doesnt exist\n");
-        }
+  x=first;
+  ii=first;
+  jj=last;
+while(ii<jj)
+{
+while(mas1[ii]<=mas1[x]&&ii<last)
+ii++;
+while(mas1[jj]>mas1[x])
+jj--;
+if(ii<jj){
+temp=mas1[ii];
+mas1[ii]=mas1[jj];
+mas1[jj]=temp;
+}
+}
+temp=mas1[x];
+mas1[x]=mas1[jj];
+mas1[jj]=temp;
+hoarasort(mas1,first,jj-1);
+hoarasort(mas1,jj+1,last);
+}
 }
 
+int main()
+{
+	srand((unsigned) time (NULL) );
+	int i,c,cas,k;
+	char j;
+	double mas[j],mas1[j];
+    float a;
+	char d[20];
+	int temp;
+	char Nmax,Nmin;
+	printf("Enter how many elemets do you want, not more than 100 and not less than 2\n");
+do
+{
+	scanf("%s", &d);
+	c=atof(d);
+	if(c<2)
+	printf("Enter bigger number\n");
+	if(c>100)
+	printf("Enter smaller number\n");
+}while(c<2 || c>100);
 
+  	printf("Enter 1, if you want to fill the stack by hand \n");
+  	printf("Enter 2, if you want the stack to be filled automaticly\n");
+   do
+   {
+   	
+  	printf("Count must be 1 or 2\n");
+  	scanf("%s", &d);
+  	cas=atof(d);
+  	
+   }while(cas<1 || cas>2);
+    switch(cas){
+	
+    case 1:	for(j=0;j<c;j++)
+		{
+			printf("Enter %c element of stack\n", j+1);
+			scanf("%s", &d);
+			a=atof(d);
+			mas[j]=a;
+			
+		}
+		break;
+	case 2:
+		for(j=0;j<c;j++)
+		{
+			a= -1000 + rand() % ((1000 + 1) + 1000);;
+			mas[j]=a;
+			
+		}
+		break;}
+ 	printf("\nYour stack is\n\n");
+	for(j=0;j<c;j++)
+	{
+		
+	printf("%c element of stack is %.0f\n",j+1 ,mas[j] );
+	}
+    printf("Enter 1, if want to delete same elements\n");
+    printf("Enter 2, if don't want to delete same elements\n");
+   do
+   {
+   	
+  	printf("Count must be 1 or 2\n");
+  	scanf("%s", &d);
+  	cas=atof(d);
+  	
+   }while(cas<1 || cas>2);
+   switch(cas){
+   	case 1:
+
+	
+	for(i=0;i<c;i++){
+	for(j=i+1;j<c;)
+    {
+    	if(mas[j]==mas[i])
+    	{
+    		
+    		for(k=j;k<c;k++)
+			{
+    			mas[k]=mas[k+1];
+    			c--;
+			}
+		}else j++;
+	}
+}
+    break;
+    case 2:break;  
+}
+    printf("\nYour stack is\n\n");
+	for(j=0;j<c;j++)
+	{
+		
+	printf("%c element of stack is %.0f\n",j+1 ,mas[j] );
+	}
+	printf("Enter 1, if you want to sort stack by bubble\n");
+	printf("Enter 2, if you want to sort stack by Hoara's method\n");
+   do
+   {
+   	
+  	printf("Count must be 1 or 2\n");
+  	scanf("%s", &d);
+  	cas=atof(d);
+  	
+   }while(cas<1 || cas>2);
+   switch(cas)
+   {
+   	case 1:
+   		for(i=c-1;i>=0; i--)
+   		{
+   			for(j=0; j<1; j++)
+   			{
+   				if(mas[j]>mas[j+1])
+   				{
+				temp = mas[j];
+   				mas[j]=mas[j+1];
+   				mas[j+1]=temp;
+				   }
+			   }
+		   }
+   	break;
+   	case 2:
+	hoarasort(mas, 0, c-1);
+   	break;
+   }
+   	
+	printf("\nYour stack is\n\n");
+	for(j=0;j<c;j++)
+	{
+		
+	printf("%.0f\t",mas[j] );
+
+	}
+		printf("\n");
+	printf("Enter number of max count\n");
+   do
+   {	
+  	printf("Number must be bigger than 0 and smaller than max number of elemets\n");
+  	scanf("%s", &d);
+  	Nmax=atof(d);
+  	
+   }while(Nmax<0 || Nmax>c);
+   
+   printf("Enter number of min count\n");
+   do
+   {	
+  	printf("Number must be bigger than 0 and smaller than max number of elemets\n");
+  	scanf("%s", &d);
+  	Nmin=atof(d);
+  	
+   }while(Nmin<0 || Nmin>c);
+   
+ 	printf("\nYour stack is\n\n");
+	for(j=0;j<c;j++)
+	{
+		
+	printf("%.0f\t",mas[j] );
+	}
+		printf("\n");
+   printf("Your max number is %d\n",mas[c-Nmax]);	
+   printf("Your min number is %d\n",mas[Nmin-1]);	
 return 0;
 }
-
